@@ -326,25 +326,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
         * This method handles what happens when the snake dies.
         * @method handleDeath
         */
-        me.handleDeath = function() {
-            function recordScore () {
-                var highScore = localStorage.jsSnakeHighScore;
-                if (highScore == undefined) localStorage.setItem('jsSnakeHighScore', me.snakeLength);
-                if (me.snakeLength > highScore) {
-                    alert('Congratulations! You have beaten your previous high score, which was ' + highScore + '.');
-                        localStorage.setItem('jsSnakeHighScore', me.snakeLength);
-                }
-}
-            recordScore();
-            me.snakeHead.elm.style.zIndex = getNextHighestZIndex(me.snakeBody);
-            me.snakeHead.elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-alive\b/,'')
-            
-
-            
-            playingBoard.handleDeath();
-            moveQueue.length = 0;
-        };
-
+       
         /**
         * This method sets a flag that lets the snake be alive again.
         * @method rebirth
