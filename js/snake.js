@@ -122,7 +122,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
             xPosShift = [],
             yPosShift = [],
             snakeSpeed = 75,
-            isDead = false,
+            
             isPaused = false;
         function getMode (mode, speed) {
     document.getElementById(mode).addEventListener('click', function () { snakeSpeed = speed; });
@@ -148,7 +148,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
         me.snakeLength = 1;
         me.snakeHead = me.snakeBody["b0"];
         me.snakeTail = me.snakeBody["b0"];
-        me.snakeHead.elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-dead\b/,'');
+        
         me.snakeHead.elm.className += " snake-snakebody-alive";
         
         // ----- private methods -----
@@ -203,7 +203,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
                     2
         */
         me.handleArrowKeys = function(keyNum) {
-            if (isDead || isPaused) {return;}
+            
             
             var snakeLength = me.snakeLength;
             var lastMove = moveQueue[0] || currentDirection;
@@ -310,7 +310,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
                 index = "b" + me.snakeLength++;
                 me.snakeBody[index] = blocks[ii];
                 me.snakeBody[index].prev = prevNode;
-                me.snakeBody[index].elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-dead\b/,'')
+                
                 me.snakeBody[index].elm.className += " snake-snakebody-alive";
                 prevNode.next = me.snakeBody[index];
                 prevNode = me.snakeBody[index];
@@ -338,9 +338,9 @@ SNAKE.Snake = SNAKE.Snake || (function() {
             recordScore();
             me.snakeHead.elm.style.zIndex = getNextHighestZIndex(me.snakeBody);
             me.snakeHead.elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-alive\b/,'')
-            me.snakeHead.elm.className += " snake-snakebody-dead";
+            
 
-            isDead = false;
+            
             playingBoard.handleDeath();
             moveQueue.length = 0;
         };
@@ -350,7 +350,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
         * @method rebirth
         */   
         me.rebirth = function() {
-            isDead = false;
+            
         };
         
         /**
@@ -358,7 +358,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
         * @method reset
         */        
         me.reset = function() {
-            if (isDead === false) {return;}
+            
             
             var blocks = [],
                 curNode = me.snakeHead.next,
@@ -378,12 +378,12 @@ SNAKE.Snake = SNAKE.Snake || (function() {
             for (var ii = 0; ii < blocks.length; ii++) {
                 blocks[ii].elm.style.left = "-1000px";
                 blocks[ii].elm.style.top = "-1000px";
-                blocks[ii].elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-dead\b/,'')
+               
                 blocks[ii].elm.className += " snake-snakebody-alive";
             }
             
             blockPool.concat(blocks);
-            me.snakeHead.elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-dead\b/,'')
+           
             me.snakeHead.elm.className += " snake-snakebody-alive";
             me.snakeHead.row = config.startRow || 1;
             me.snakeHead.col = config.startCol || 1;
