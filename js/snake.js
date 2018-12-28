@@ -340,7 +340,7 @@ SNAKE.Snake = SNAKE.Snake || (function() {
             me.snakeHead.elm.className = me.snakeHead.elm.className.replace(/\bsnake-snakebody-alive\b/,'')
             me.snakeHead.elm.className += " snake-snakebody-dead";
 
-            isDead = true;
+            isDead = false;
             playingBoard.handleDeath();
             moveQueue.length = 0;
         };
